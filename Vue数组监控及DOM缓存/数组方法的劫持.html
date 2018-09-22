@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li></li>
+    </ul>
+    <button onclick="reverse()">reverse</button>
+    <button onclick="append()">append</button>
+  </div>
+</body>
+<script>
+  var Vue = (function(gobal, factory) {
+    return factory.call(gobal);
+  })(this, function() {
+    var _VUE_ = function (opts) {
+      if (!opts) return;
+      this.opts = opts;
+      this._el = document.querySelector(opts.el || '');
+      this.el = this._el.cloneNode(true);
+      this._el.parentNode.appendChild(this.el);
+      this._el.remove(); // 虽然将元素remove掉了，但是元素还是存在缓存之中，这点和delete方法是不一样的
+
+      this._data = opts.data;
+      for (var property in this._data) {
+        var value = this._data[property];
+        console.log(JSON.stringify(value));
+        if (value instanceof Array) {
+          addFunction.call(this, this._data, property, value);
+        }
+      }
+    };
+    // 操作dom 不可取
+    function notify1(model, property, value) {
+      console.time();
+      var ul = this.el.querySelector('ul');
+      ul.innerHTML = '';
+      var list = '';
+      for(var i = 0; i < value.length; i++) {
+        list += '<li>' + value[i] + '</li>';
+      }
+      ul.innerHTML = list;
+      console.timeEnd();
+    }
+
+    // 使用缓存
+    function notify(model, property, value) {
+      console.time();
+      var ul = this.el.querySelector('ul');
+      var caches = this._el.caches = this._el.caches || [];
+      if (caches.length === 0) {
+        if (ul.children.length > 0) {
+          [].forEach.call([].slice.call(ul.children), function(child) {
+            this._el.caches.push(child); // 将ul的子元素缓存起来
+            child.remove();
+          }.bind(this));
+        }
+      }
+      // console.log(this._el.caches); 证明缓存中已经存在我们的模板
+      for(var i = 0; i < value.length; i++) {
+        if (caches[i]) {
+          caches[i].innerText = value[i];
+          ul.appendChild(caches[i]);
+        } else {
+          var li = document.createElement('li');
+          li.innerText = value[i];
+          caches.push(li);
+          ul.appendChild(li);
+        }
+      }
+      console.timeEnd();
+    }
+
+
+    function addFunction(model, property, value) {
+      var that = this;
+      ['push', 'reverse'].forEach((method) => {
+        var ori = Array.prototype[method];
+        value[method] = function() {
+          var res = ori.apply(this, arguments);
+          console.log(method);
+          notify.apply(that, [model, property, value]);
+          return res;
+        };
+      })
+    }
+    return _VUE_;
+  });
+  var model = {
+    arr: [1,2,3,4]
+  }
+  new Vue({
+    el: '#app',
+    data: model
+  });
+  function reverse() {
+    model.arr.reverse();
+  }
+  function append() {
+    var newArr = [];
+    for (var i = 6; i < 100; i++) {
+      newArr.push(i);
+    }
+    model.arr.push(...newArr);
+  }
+</script>
+</html>

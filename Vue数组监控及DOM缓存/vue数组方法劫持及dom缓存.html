@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/caches.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <i>1</i>
+        </ul>
+        <button onclick="add()">push</button>
+        <button onclick="del()">splice</button>
+    </div>
+</body>
+<script>
+    let model = {
+      arr: [1,2,3,4]
+    };
+    new Vue({
+      el: '#app',
+      data: model
+    });
+
+    function add() {
+      var arr = [];
+      for(var i = 0; i < 100; i++) {
+        arr.push(i);
+      }
+      model.arr.push(...arr);
+    }
+    function del() {
+        model.arr.splice(50, 49);
+    }
+
+</script>
+</html>
