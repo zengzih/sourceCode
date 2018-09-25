@@ -39,9 +39,10 @@ var Vue = (function(gobal, factory) {
       if (ul.children.length) {
         [].forEach.call([].slice.call(ul.children), function(child) {
           caches.push(child);
+          this._el.caches.push(child);
           ul.appendChild(child);
           child.remove();
-        })
+        }.bind(this))
       }
     }
     value.forEach((child, index) => {

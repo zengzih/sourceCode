@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script id="template" type="javascript/template">
+        <ul>
+            <% for(let i in obj){ %>
+            <li>
+                <span><%= obj[i].text %></span>
+            </li>
+            <%}%>
+        </ul>
+    </script>
+</body>
+<script src="js/index.js"></script>
+<script>
+    var vm = new MyVue({
+      el: '#root',
+      template: '#template',
+      data: [
+        {
+          text: 'web'
+        },
+        {
+          text: 'java'
+        },
+        {
+          text: 'node'
+        }
+      ]
+    })
+
+    var str = 'x-x_';
+    var retArr = [];
+    str.replace(/(x_*)|(-)/g, function(match, p1, p2) {
+      if (p1) { retArr.push({ on: true, length: p1.length }); }
+      if (p2) { retArr.push({ on: false, length: 1 }); }
+    });
+
+    console.log(retArr);
+</script>
+</html>
