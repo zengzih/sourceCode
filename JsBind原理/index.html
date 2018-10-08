@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /*Function.prototype.bind2 = function(context) {
+      var _this = this;
+      // this 代表着当前
+      // this 代表着当前调用的那个方法
+      // context 就是bind的执行对象
+      let args = Array.prototype.slice.call(arguments, 1);
+      return function() {
+        // 这里的this需要做一下判断，因为可能是方法的直接调用，也可能是使用new来调用
+        var bindArgs = [].slice.call(arguments);
+        return _this.apply(context, args.concat(bindArgs));
+      }
+    }*/
+
+
+    Function.prototype.bind2 = function(context) {
+      if (typeof this !== 'function') {
+        throw new Error('调用的对象不是方法');
+      }
+      var _this = this;
+      // this 代表着当前
+      // this 代表着当前调用的那个方法
+      // context 就是bind的执行对象
+      let args = Array.prototype.slice.call(arguments, 1);
+      // 这里的this需要做一下判断，因为可能是方法的直接调用，也可能是使用new来调用
+      // 当使用new来调用时，result就指向的是 构造函数的引用，如：
+        /*
+        * var bind = bar.bind2(obj);
+        * var nObj = new bind();
+        * 此时result 就是 nObj的别名。
+        * */
+      let result = function() {
+        var bindArgs = [].slice.call(arguments);
+        return _this.apply(this instanceof result ? this : context, args.concat(bindArgs));
+      }
+      // result.prototype = this.prototype; // 原型直接赋值，改变新的原型上面的属性或方法会影响原本的对象原型上的属性或方法，不可取
+      var FN = function() {};
+      FN.prototype = this.prototype;
+      result.prototype = new FN();
+      return result;
+    }
+
+    function bar(name, age) {
+      console.log(this.value);
+      console.log(name);
+      console.log(age);
+    }
+
+    var obj = {
+      value: '111'
+    }
+    var bind = bar.bind2(obj, 'leo');
+    bind('20');
+</script>
+</html>
