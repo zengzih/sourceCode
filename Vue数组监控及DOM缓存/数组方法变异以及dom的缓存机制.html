@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <ul></ul>
+        <button onclick="handleSetArr()">SetArr</button>
+    </div>
+</body>
+<script>
+  var Vue = (function(gobal, factory) {
+    return factory.call(gobal);
+  })(this, function() {
+    var _VUE_ = function(opts) {
+      this._el = document.querySelector(opts.el);
+      this.data = opts.data;
+      this.el = this._el.cloneNode(true);
+      this._el.parentNode.appendChild(this.el);
+      this._el.remove();
+
+      for (var property in this.data) {
+        var value = this.data[property];
+        if (value instanceof Array) {
+          addFunction.call(this, this.data, property, value);
+        }
+      }
+    }
+    function addFunction(data, property, value) {
+      var _this = this;
+      var arg = arguments;
+      ['push', 'shift', 'unshift', 'pop'].forEach(function(method) {
+        var origin = Array.prototype[method];
+        value[method] = function() {
+          console.log(arguments);
+          var res = origin.apply(this, arguments);
+          notify.apply(_this, arg);
+          return res;
+        }
+      })
+    }
+
+    function notify(data, property, value) {
+      var ul = this.el.querySelector('ul');
+      var caches = this._el.caches = this._el.caches || [];
+      if (!caches.length) {
+        if (ul.children.length) {
+          [].forEach.call([].call([].slice.call(ul.children)), function (elt) {
+            this._el.caches.push(elt);
+            elt.remove();
+          }.bind(this))
+        }
+      }
+      value.forEach(function(item, index) {
+        if (caches[index]) {
+            caches[index].innerText = item;
+            ul.appendChild(caches[index]);
+        } else {
+          var li = document.createElement('li');
+          li.innerText = item;
+          caches.push(li);
+          ul.appendChild(li);
+        }
+      })
+    }
+
+    return _VUE_;
+  });
+
+  var arr = [1,2,3,4];
+  new Vue({
+    el: '#app',
+    data: {
+      arr: arr
+    }
+  });
+
+  function handleSetArr() {
+    arr.push(9);
+  }
+
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+

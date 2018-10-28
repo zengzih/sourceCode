@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <ul></ul>
+        <button onclick="handleBtnClick()">add</button>
+    </div>
+</body>
+<script>
+   var Vue = (function(gobal, factory) {
+     return factory.call(gobal);
+   })(this, function() {
+     var _VUE_ = function(opts) {
+       if (!opts) return;
+       this._el = document.querySelector(opts.el || '');
+       this.el = this._el.cloneNode(true);
+       this._el.parentNode.appendChild(this.el);
+       this._el.remove();
+
+       this._data = opts.data;
+       for (let property in this._data) {
+         let value = this._data[property];
+         if (value instanceof Array) {
+           addFunction.call(this, this._data, property, value);
+         }
+       }
+     };
+     function addFunction(data, propery, value) {
+       const _this = this;
+       ['push', 'shift', 'reverse'].forEach((method)=> {
+         var ori = Array.prototype[method];
+         value[method] = function() {
+           var res = ori.apply(this, arguments);
+           notify.apply(_this, [data, propery, value]);
+           return res;
+         }
+       })
+     }
+     function notify(data, property, value) {
+       const ul = this.el.querySelector('ul');
+       const caches = this._el.caches = this._el.caches || [];
+       if (!caches.length) {
+         if (ul.children.length > 0) {
+           [].forEach.call([].slice.call(ul.children), function(child) {
+             this._el.caches.push(child); // 将ul的子元素缓存起来
+             child.remove();
+           }.bind(this));
+         }
+       }
+       for (let i = 0; i < value.length; i++) {
+         if (caches[i]) {
+           caches[i].innerText = value[i];
+           ul.appendChild(caches[i]);
+         } else {
+           var li = document.createElement('li');
+           li.innerText = value[i];
+           caches.push(li);
+           ul.appendChild(li);
+         }
+       }
+     }
+     return _VUE_;
+   });
+
+   var vm = new Vue({
+     el: '#app',
+     data: {
+       arr: [1,2,4,5,6,]
+     }
+   });
+   function handleBtnClick() {
+     vm._data.arr.push(7);
+   }
+</script>
+</html>

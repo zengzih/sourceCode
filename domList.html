@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+<script>
+  function addFunction(data) {
+    let _this = this;
+    ['push', 'shift', 'unshift', 'pop', 'splice', 'slice'].forEach(function(method) {
+      const ori = Array.prototype[method];
+      data[method] = function() {
+        console.log(arguments, method);
+        ori.apply(this, arguments);
+      }
+    });
+  }
+
+  var arr = [1, 2, 3, 4];
+  addFunction(arr);
+  arr.push(5);
+  console.log(arr);
+
+
+
+</script>
+</html>

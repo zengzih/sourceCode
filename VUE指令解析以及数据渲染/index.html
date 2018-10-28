@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        {{model}}
+        <input type="text" v-model="model"/>
+        <!--<div>qq{{model}}</div>-->
+    </div>
+</body>
+<script>
+    // 代理app下面dom节点的一个劫持
+    function nodeToFragMent(node) {
+      // 创建虚拟dom，优化的必要技能
+      let flag = document.createDocumentFragment();
+      let child;
+      while (child = node.firstChild) {
+        // 在添加节点时，去解析指令
+        compile.call(this, child);
+        flag.appendChild(child);
+      }
+      return flag;
+    }
+
+    function defineReactive(key, value) {
+      let dep = new Dep();
+      Object.defineProperty(this, key, {
+        get() {
+            if (Dep.target) {
+              dep.addSub(Dep.target);
+            }
+            return value;
+        },
+        set(newVal) {
+            if (newVal === value) {
+              return;
+            }
+            console.log({
+              key: key,
+              value: value
+            });
+            console.log(this);
+            value = newVal;
+            dep.notify();
+        }
+      });
+    }
+
+    // 观察者
+    function Watcher(vm, node, name, nodeType) {
+        Dep.target = this;
+        this.name = name;
+        this.node = node;
+        this.vm = vm;
+        this.nodeType = nodeType;
+        this.update();
+    }
+    Watcher.prototype = {
+      update() {
+        this.get();
+        if (this.nodeType === 'text') {
+          debugger;
+          this.node.nodeValue = this.value;
+        }
+        if (this.nodeType === 'input') {
+          this.value = this.vm[this.name];
+        }
+      },
+      get() {
+        this.value = this.vm[this.name];
+      }
+    };
+
+    // 订阅对象
+    function Dep() {
+        this.subs = []; // 暂存观察者实例
+    }
+    Dep.prototype = {
+      notify: function() {
+        this.subs.forEach(function(sub) {
+          sub.update();
+        })
+      },
+      addSub: function(sub) {
+        this.subs.push(sub);
+      }
+    };
+
+    // 遍历监听
+    function observer(obj) {
+      Object.keys(obj).forEach(function (key) {
+        defineReactive.call(this, key, obj[key]);
+      }.bind(this));
+    }
+    // 编译模板
+    function compile (node) {
+        console.dir(node);
+        // 判断node节点的类型
+        let reg = /\{\{(.*)\}\}/;
+        let rep = /(\{\{)|(\}\})/g;
+        let getReg = /\{\{(.*?)\}\}/g;
+        let textType = 'input';
+        let name = '';
+        const getNodeValue = function(node) {
+          return node.replace(getReg, function(elt) {
+            let repStr = elt.replace(rep, '');
+            return this[repStr.trim()];
+          }.bind(this));
+        };
+        if (node.nodeType == 1) {
+            let attr = node.attributes;
+            if (attr.length) {
+              [].forEach.call([].slice.call(attr), function(elt) {
+                if (elt.nodeName == 'v-model') {
+                  name = elt.nodeValue;
+                  node.addEventListener('input', function(e) {
+                    this[name] = e.target.value; // 实现data数据的
+                  }.bind(this), false);
+                  node.value = this[name];
+                  node.removeAttribute('v-model');
+                }
+              }.bind(this));
+            } else {
+              if (reg.test(node.textContent)) {
+                node.textContent = getNodeValue.call(this, node.textContent);
+              }
+            }
+            textType = 'input';
+        }
+        if (node.nodeType == 3) {
+          if (reg.test(node.nodeValue)) {
+            name = RegExp.$1;
+            node.nodeValue = this[name];
+            // node.nodeValue = getNodeValue.call(this, node.nodeValue);
+          }
+          textType = 'text';
+        }
+        new Watcher(this, node, name, textType);
+    }
+    function Vue(opts) {
+      this.data = opts.data;
+      let _id = opts.el;
+      observer.call(this, this.data);
+      let _dom = nodeToFragMent.call(this, document.querySelector(_id));
+      document.querySelector(_id).appendChild(_dom);
+    }
+
+    let vm = new Vue({
+      el: "#app",
+      data: {
+        model: 'Test'
+      }
+    });
+</script>
+</html>
