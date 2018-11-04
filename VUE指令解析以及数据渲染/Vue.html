@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="model" />
+        {{model}}
+    </div>
+</body>
+<script>
+    function nodeToFragMent(node) {
+      let flag = document.createDocumentFragment();
+      let child;
+      while(child = node.firstChild) {
+        compile.call(this, child);
+        flag.appendChild(child);
+      }
+      return flag;
+    }
+
+    // 解析指令
+    function compile(node) {
+      let reg = /\{\{(.*)\}\}/;
+      let type = '';
+      let modelName = '';
+      let nodeType = node.nodeType;
+      if (nodeType == 1) {
+        let attr = node.attributes;
+        if (attr.length) {
+          [].forEach.call([].slice.apply(attr), elt=> {
+            if (elt.nodeName === 'v-model') {
+              modelName = elt.nodeValue;
+              node.addEventListener('input', (e)=> {
+                this[modelName] = e.target.value;
+              });
+              node.value = this[modelName];
+              node.removeAttribute('v-model');
+            }
+          });
+        } else {
+          // 解析div中的指令
+        }
+        type = 'input';
+      }
+      if (nodeType == 3) {
+        if (reg.test(node.nodeValue)) {
+            modelName = RegExp.$1;
+            node.nodeValue = this[modelName];
+        }
+        type = 'text';
+      }
+      new Watcher(this, node, type, modelName);
+    }
+
+    function Watcher(vm, node, type, modelName) {
+      Dep.target = this;
+      this.node = node;
+      this.type = type;
+      this.vm = vm;
+      this.modelName = modelName;
+      this.update();
+    }
+    Watcher.prototype = {
+      update() {
+        this.get();
+        if (this.type == 'text') {
+          this.node.nodeValue = this.value;
+        }
+        if (this.type == 'input') {
+          this.value = this.vm[this.modelName];
+        }
+      },
+      get() {
+        this.value = this.vm[this.modelName];
+      }
+    };
+
+    function Dep() {
+      this.subs = [];
+    }
+    Dep.prototype = {
+      notify() {
+        this.subs.forEach(sub=> {
+          debugger;
+          sub.update();
+        })
+      },
+      addSub(sub) {
+        this.subs.push(sub);
+      }
+    };
+
+    // 数据劫持
+    function observer(obj) {
+      Object.keys(obj).forEach(function (key) {
+        defineReactive.call(this, key, obj[key]);
+      }.bind(this));
+    }
+
+    function defineReactive(key, value) {
+        let dep = new Dep();
+        Object.defineProperty(this, key, {
+          get() {
+            if (Dep.target) {
+              dep.addSub(Dep.target);
+            }
+            return value;
+          },
+          set(val) {
+            console.log('----set----', val);
+            if (val !== value) {
+              value = val;
+              debugger;
+              dep.notify();
+            }
+          }
+        });
+    }
+
+    function Vue(opts) {
+      this._id = opts.el;
+      this.data = opts.data;
+      observer.call(this, this.data);
+      let _dom = nodeToFragMent.call(this, document.querySelector(this._id));
+      document.querySelector(this._id).appendChild(_dom);
+    }
+
+    let vm = new Vue({
+      el: '#app',
+      data: {
+        model: 'test'
+      }
+    });
+    console.log(vm);
+</script>
+</html>
