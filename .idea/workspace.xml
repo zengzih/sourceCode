@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c16b61f8-c37f-4271-bcef-f7094f4f37e4" name="Default" comment="" />
+    <list default="true" id="c16b61f8-c37f-4271-bcef-f7094f4f37e4" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/SQL设计器/.idea/SQL设计器.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQL设计器/.idea/dictionaries/zengzihan.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQL设计器/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQL设计器/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQL设计器/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQL设计器/.idea/reactTemplatesPlugin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQL设计器/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -14,60 +23,70 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="数组方法的劫持.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/数组方法的劫持.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JsBind原理/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="19" selection-start-line="19" selection-end-line="19" />
-              <folding>
-                <element signature="e#1216#1486#0" />
-              </folding>
+            <state relative-caret-position="840">
+              <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Vue双向绑定到视图渲染/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file leaf-file-name="replace.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/replace.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="vue数组方法劫持及dom缓存.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/vue数组方法劫持及dom缓存.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-189" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="118" column="62" lean-forward="true" selection-start-line="118" selection-start-column="62" selection-end-line="118" selection-end-column="62" />
+            <state relative-caret-position="21">
+              <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SQL设计器/js/index.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="Vue.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/Vue.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1911">
+              <caret line="91" column="25" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vue.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75642">
+              <caret line="3688" column="37" selection-start-line="3688" selection-start-column="32" selection-end-line="3688" selection-end-column="37" />
               <folding>
-                <marker date="1540742792698" expanded="true" signature="414:549" ph="..." />
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#7539#9165#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="数组的监控.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/数组的监控.js">
+      <file leaf-file-name="vue源码探秘.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue源码探秘.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
+            <state relative-caret-position="210">
+              <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="vue双向绑定模板解析" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue双向绑定模板解析">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="19" selection-start-column="19" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -77,14 +96,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Watcher</find>
+      <find>compile</find>
+      <find>nodeType</find>
+      <find>factory</find>
+      <find>v-model</find>
+      <find>textContent</find>
+      <find>outerText</find>
+      <find>v-for</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -100,12 +125,11 @@
         <option value="$PROJECT_DIR$/js/caches.js" />
         <option value="$PROJECT_DIR$/push.js" />
         <option value="$PROJECT_DIR$/JsBind原理/index.html" />
-        <option value="$PROJECT_DIR$/Vue数组监控及DOM缓存/数组方法的劫持以及dom的缓存.html" />
-        <option value="$PROJECT_DIR$/Vue数组监控及DOM缓存/数组方法变异以及dom的缓存机制.html" />
-        <option value="$PROJECT_DIR$/JsBind原理/bind实现.js" />
-        <option value="$PROJECT_DIR$/Vue数组监控及DOM缓存/数组的监控.js" />
-        <option value="$PROJECT_DIR$/domList.html" />
-        <option value="$PROJECT_DIR$/replace.js" />
+        <option value="$PROJECT_DIR$/VUE指令解析以及数据渲染/vue双向绑定模板解析" />
+        <option value="$PROJECT_DIR$/VUE指令解析以及数据渲染/vue.common.js" />
+        <option value="$PROJECT_DIR$/VUE指令解析以及数据渲染/vue.js" />
+        <option value="$PROJECT_DIR$/VUE指令解析以及数据渲染/vue源码探秘.html" />
+        <option value="$PROJECT_DIR$/VUE指令解析以及数据渲染/Vue.html" />
         <option value="$PROJECT_DIR$/VUE指令解析以及数据渲染/index.html" />
       </list>
     </option>
@@ -127,32 +151,29 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
+    <option name="x" value="38" />
+    <option name="y" value="32" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="798" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="Vue源码解析" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Vue源码解析" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Vue源码解析" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Vue源码解析" type="462c0819:PsiDirectoryNode" />
-              <item name="VUE指令解析以及数据渲染" type="462c0819:PsiDirectoryNode" />
+              <item name="sourceCode" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sourceCode" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -170,7 +191,11 @@
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/VUE指令解析以及数据渲染" />
       <recent name="$PROJECT_DIR$/js" />
     </key>
   </component>
@@ -186,24 +211,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.replace.js">
+  <component name="RunManager" selected="Node.js.push.js">
     <configuration name="数组方法的劫持.html" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/数组方法的劫持.html" working-dir="$PROJECT_DIR$" />
-    <configuration name="数组的监控.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="数组的监控.js" working-dir="$PROJECT_DIR$/Vue数组监控及DOM缓存" />
-    <configuration name="bind实现.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="bind实现.js" working-dir="$PROJECT_DIR$/JsBind原理" />
-    <configuration name="push.js" type="NodeJSConfigurationType" factoryName="Node.js" nameIsGenerated="true" path-to-js-file="push.js" working-dir="$PROJECT_DIR$" />
-    <configuration name="replace.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="replace.js" working-dir="$PROJECT_DIR$" />
+    <configuration name="push.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="push.js" working-dir="$PROJECT_DIR$" />
     <list>
-      <item itemvalue="Node.js.push.js" />
       <item itemvalue="Node.js.数组方法的劫持.html" />
-      <item itemvalue="Node.js.bind实现.js" />
-      <item itemvalue="Node.js.数组的监控.js" />
-      <item itemvalue="Node.js.replace.js" />
+      <item itemvalue="Node.js.push.js" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.replace.js" />
-        <item itemvalue="Node.js.数组的监控.js" />
-        <item itemvalue="Node.js.bind实现.js" />
+        <item itemvalue="Node.js.push.js" />
         <item itemvalue="Node.js.数组方法的劫持.html" />
       </list>
     </recent_temporary>
@@ -219,43 +236,39 @@
       <option name="presentableId" value="Default" />
       <updated>1537619960638</updated>
       <workItem from="1537619961876" duration="11318000" />
-      <workItem from="1539008668926" duration="3095000" />
-      <workItem from="1540218437681" duration="26752000" />
+      <workItem from="1539008668926" duration="2671000" />
+      <workItem from="1540743368883" duration="26000" />
+      <workItem from="1540743558110" duration="889000" />
+      <workItem from="1540827147204" duration="11406000" />
+      <workItem from="1541337695970" duration="238000" />
     </task>
-    <task id="LOCAL-00001" summary="JS bind关键字的实现">
-      <created>1539012516735</created>
+    <task id="LOCAL-00001" summary="sql设计器">
+      <created>1541337832873</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1539012516735</updated>
+      <updated>1541337832873</updated>
     </task>
-    <task id="LOCAL-00002" summary="JS bind关键字的实现">
-      <created>1540743241515</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1540743241515</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41165000" />
+    <option name="totallyTimeSpent" value="26548000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="38" y="32" width="1440" height="798" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14023961" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14376321" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2857143" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="10" visible="true" weight="0.32952926" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32902297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32969698" />
+      <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="RNConsole" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39971346" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -268,27 +281,122 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="JS bind关键字的实现" />
-    <option name="LAST_COMMIT_MESSAGE" value="JS bind关键字的实现" />
+    <MESSAGE value="sql设计器" />
+    <option name="LAST_COMMIT_MESSAGE" value="sql设计器" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/JsBind原理/bind实现.js</url>
-          <line>25</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="6" />
+      <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/JsBind原理/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Vue双向绑定到视图渲染/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/Vue.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1911">
+          <caret line="91" column="25" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77448">
+          <caret line="3688" column="37" selection-start-line="3688" selection-start-column="32" selection-end-line="3688" selection-end-column="37" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#7539#9165#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue源码探秘.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue双向绑定模板解析">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JsBind原理/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue双向绑定模板解析">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JsBind原理/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1302">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/JsBind原理/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1302">
@@ -300,105 +408,68 @@
     <entry file="file://$PROJECT_DIR$/vue数组方法劫持及dom缓存.html" />
     <entry file="file://$PROJECT_DIR$/js/caches.js" />
     <entry file="file://$PROJECT_DIR$/push.js" />
-    <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/js/caches.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-711">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/数组方法变异以及dom的缓存机制.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-28">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/JsBind原理/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="702">
-          <caret line="40" column="16" selection-start-line="40" selection-start-column="10" selection-end-line="40" selection-end-column="16" />
+        <state relative-caret-position="840">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/数组方法的劫持.html">
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue.common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        <state relative-caret-position="-204">
+          <caret line="9403" column="10" lean-forward="true" selection-start-line="9403" selection-start-column="10" selection-end-line="9403" selection-end-column="10" />
           <folding>
-            <element signature="e#1216#1486#0" />
+            <element signature="e#248967#251457#0" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/JsBind原理/bind实现.js">
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue双向绑定模板解析">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        <state>
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue源码探秘.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/vue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75642">
+          <caret line="3688" column="37" selection-start-line="3688" selection-start-column="32" selection-end-line="3688" selection-end-column="37" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <element signature="e#7539#9165#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/数组方法的劫持以及dom的缓存.html">
+    <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/Vue.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="31" column="46" selection-start-line="31" selection-start-column="41" selection-end-line="31" selection-end-column="46" />
+        <state relative-caret-position="1911">
+          <caret line="91" column="25" selection-start-line="91" selection-start-column="25" selection-end-line="91" selection-end-column="25" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/domList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vue双向绑定到视图渲染/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="40" column="50" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/数组的监控.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="29" lean-forward="true" selection-start-line="6" selection-start-column="29" selection-end-line="6" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Vue数组监控及DOM缓存/vue数组方法劫持及dom缓存.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-189" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Vue双向绑定到视图渲染/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/replace.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/VUE指令解析以及数据渲染/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="118" column="62" lean-forward="true" selection-start-line="118" selection-start-column="62" selection-end-line="118" selection-end-column="62" />
-          <folding>
-            <marker date="1540742792698" expanded="true" signature="414:549" ph="..." />
-          </folding>
+        <state relative-caret-position="21">
+          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SQL设计器/js/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
