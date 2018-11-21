@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@1.4/lib/theme-default/index.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入组件库 -->
+    <!--<script src="https://unpkg.com/element-ui@1.4/lib/index.js"></script>-->
+    <script src="./js/element.js"></script>
+    <script src="./js/index.js"></script>
+</head>
+<body>
+<div id="app">
+    <div class="table_block" v-for="item in tableList" @mousedown="handleMouseDown($event, item)"
+         :style="getTableBlockStyle(item)">
+        <div class="header" @click.stop.prevent @dblclick.stop="handleEditHeader(item)">
+            <div class="operation">
+                <span @click.stop="handleRevert(item)">
+                    <i class="el-icon-arrow-left"></i>
+                </span>
+                <span>
+                    <i class="el-icon-check"></i>
+                </span>
+            </div>
+            <span>
+                {{ item.name }}
+            </span>
+            <span class="close" @click="handleClose(item)"><i class="el-icon-close"></i></span>
+        </div>
+        <div class="content">
+            <div class="content_table" v-if="!item.panelExpand">
+                <!--<el-table :data="item.attributes" :show-header="false" :col-group="colGroup">
+                    <el-table-column show-overflow-tooltip prop="code" label="实体编码"></el-table-column>
+                    <el-table-column show-overflow-tooltip prop="code" label="实体名称" ></el-table-column>
+                    <el-table-column show-overflow-tooltip prop="dataType" label="字段类型">
+                        <template scope="scope">
+                            <div>{{scope.row.dataType}} {{ scope.row.length }}</div>
+                        </template>
+                    </el-table-column>
+                </el-table>-->
+                <min-table :data="item.attributes" :column="minColumn" @row-click="handleRowDblClick($event, item)"></min-table>
+            </div>
+
+            <div class="content_panel" v-else>
+                <el-tabs type="border-card">
+                    <el-tab-pane v-for="panel in tableGroup" :label="panel.groupName">{{panel.groupName}}</el-tab-pane>
+                </el-tabs>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+  var tableGroup = [
+    {
+      id: 'dataProperty',
+      groupName: '数据属性', table: [
+        {label: '字段编码', prop: 'code'},
+        {label: '字段名称', prop: 'name'},
+        {label: '表映射', prop: 'mappingField'},
+        {label: '系统字段', prop: 'systemFieldType', type: 'select', selDataCode: 'systemFieldType'},
+        {label: '字段类型', prop: 'dataType', type: 'select', selDataCode: 'dataType'},
+        {label: '字段长度', prop: 'length', type: 'number'},
+        {label: '小数点', prop: 'precision', type: 'number'},
+        {label: '数据格式', prop: 'dataFormat'},
+        {label: '默认值', prop: 'defaultValue'},
+        {label: '主键', prop: 'primaryKey', type: 'checkbox', defaultValue: false},
+        {label: '允许空值', prop: 'nullAble', type: 'checkbox', defaultValue: true}
+
+      ]
+    },
+    {
+      id: 'relationProperty',
+      groupName: '关联属性', table: [
+        {
+          prop: 'code',
+          label: '字段编码',
+          width: 90,
+          type: 'input',
+          disabled: true
+        }, {
+          prop: 'name',
+          label: '字段名称',
+          width: 100,
+          type: 'input',
+          disabled: true
+        }, {
+          prop: 'type',
+          label: '属性类型',
+          width: 90,
+          type: 'select',
+          selDataCode: 'type',
+          defaultValue: 'SELF',
+        }, {
+          prop: 'refAttributeId',
+          label: '关联字段',
+          width: 90,
+          required: null,
+          type: 'button',
+          slot: '选择关联字段'
+        }
+
+      ]
+    },
+    {
+      id: 'pageProperty',
+      groupName: '页面属性', table: [
+        {
+          prop: 'code',
+          label: '字段编码',
+          width: 150,
+          type: 'input',
+          fixed: true,
+          disabled: true
+        }, {
+          prop: 'name',
+          label: '字段名称',
+          width: 150,
+          type: 'input',
+          disabled: true
+        }, {
+          prop: 'hidden',
+          label: '是否显示',
+          width: 90,
+          type: 'checkbox'
+        }, {
+          prop: 'formEdit',
+          label: '是否编辑',
+          width: 90,
+          type: 'checkbox'
+        }, {
+          prop: 'controlType',
+          label: '控件类型',
+          width: 150,
+          type: 'select',
+          selDataCode: 'controlType',
+        }, {
+          prop: 'dataSource',
+          label: '下拉数据源',
+          width: 180,
+          type: 'select',
+          selDataCode: 'dataSource',
+          clearable: true,
+        }, {
+          prop: 'expression',
+          label: '下拉表达式',
+          width: 180,
+          type: 'input'
+        }, {
+          prop: 'queryField',
+          label: '是否查询',
+          width: 90,
+          type: 'checkbox',
+          defaultValue: false,
+        }, {
+          prop: 'operator',
+          label: '查询条件操作符',
+          width: 90,
+          type: 'select',
+          selDataCode: 'operator',
+        }
+      ]
+    },
+    {
+      id: 'checkRule',
+      groupName: '校验规则', table: [
+        {
+          prop: 'code',
+          label: '字段编码',
+          width: 150,
+          type: 'input',
+          fixed: true,
+          disabled: true,
+          popper: true
+        }, {
+          prop: 'name',
+          label: '字段名称',
+          width: 150,
+          type: 'input',
+          disabled: true,
+          popper: true
+        }, {
+          prop: 'validationRules',
+          label: '校验类型',
+          width: 150,
+          type: 'button',
+          slot: '添加校验'
+        }
+      ]
+    }
+  ];
+  new Vue({
+    mixins: [tableBlock],
+    el: '#app',
+    data: {
+      minColumn: [
+        {label: '实体编码', prop: 'code', required: true},
+        {label: '字段名称', prop: 'name', required: true},
+        {label: '长度', prop: 'length', required: true},
+      ],
+      column: [
+        {label: '实体编码', prop: 'code', required: true},
+        {label: '字段名称', prop: 'name', required: true},
+        {label: '字段类型', prop: 'dataType', required: true, aliasProp: ['dataType', 'length']},
+        {label: '表映射', prop: 'mappingField', required: true},
+        {label: '应用ID', prop: 'appId'},
+        {label: '组织ID', prop: 'orgId'},
+        {label: '父实体', prop: 'parentId', type: 'select', selDataCode: 'parentEntityList'},
+        {label: '实体描述', prop: 'description', type: 'textarea'}
+      ],
+      tableGroup: tableGroup,
+      colGroup: false,
+      showHeader: false,
+      tableList: [],
+      result: []
+    },
+    created() {
+      axios.get('./data/formData.json').then(function (response) {
+        this.tableList = response.data;
+        this.tableList.map(function(item) {
+          this.$set(item, 'panelExpand', false);
+        }.bind(this));
+      }.bind(this))
+    },
+    methods: {
+    }
+  })
+</script>
+</html>

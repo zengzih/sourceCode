@@ -6,9 +6,9 @@
 </head>
 <body>
     <div id="app">
-        {{model}}
+        qq--{{model}}
         <input type="text" v-model="model"/>
-        <!--<div>qq{{model}}</div>-->
+        <div>qqqqq----{{model}}</div>
     </div>
 </body>
 <script>
@@ -62,7 +62,6 @@
       update() {
         this.get();
         if (this.nodeType === 'text') {
-          debugger;
           this.node.nodeValue = this.value;
         }
         if (this.nodeType === 'input') {
@@ -97,7 +96,6 @@
     }
     // 编译模板
     function compile (node) {
-        console.dir(node);
         // 判断node节点的类型
         let reg = /\{\{(.*)\}\}/;
         let rep = /(\{\{)|(\}\})/g;
@@ -133,8 +131,8 @@
         if (node.nodeType == 3) {
           if (reg.test(node.nodeValue)) {
             name = RegExp.$1;
-            node.nodeValue = this[name];
-            // node.nodeValue = getNodeValue.call(this, node.nodeValue);
+            // node.nodeValue = this[name];
+            node.nodeValue = getNodeValue.call(this, node.nodeValue);
           }
           textType = 'text';
         }

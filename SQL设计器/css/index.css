@@ -1,0 +1,83 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+body {
+    height: 100%;
+    width: 100%;
+}
+#app {
+    height: 3000px;
+    width: 3000px;
+    background-image: url("../image/back.png");
+    position: relative;
+}
+#app .table_block {
+    position: absolute;
+    width: auto;
+    background: #fff;
+    box-shadow: 0px 3px 11px 0px #b3a9a9;
+    border-radius: 4px;
+}
+#app .table_block .el-table {
+    border-top: none;
+}
+#app .header {
+    height: 25px;
+    border-bottom: 1px solid #ccc;
+    line-height: 25px;
+    text-align: center;
+    position: relative;
+}
+#app .header .close {
+    height: 25px;
+    width: 25px;
+    line-height: 25px;
+    text-align: center;
+    position: absolute;
+    right: 0;
+    font-size: 12px;
+    cursor: pointer;
+}
+#app .header .close:hover i {
+    display: inline-block;
+}
+#app .header .close i {
+    color: #928f8f;
+    display: none;
+}
+#app .header .operation {
+    height: 100%;
+    position: absolute;
+    letf: 0;
+    top: 0;
+}
+#app .header .operation span {
+    font-size: 12px;
+    width: 25px;
+    display: inline-block;
+    color: #928f8f;
+    cursor: pointer;
+}
+
+.el-table__body-wrapper table tbody tr td .cell {
+    width: auto!important;
+}
+.el-table__body tbody .el-table__row td {
+    height: 24px;
+}
+
+.el-tabs__item {
+    height: 28px;
+    line-height: 28px;
+}
+
+
+
+
+
+
+
