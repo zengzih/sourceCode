@@ -35,17 +35,50 @@
                this._error = null;
                this._handler(func);
            }
+
+           // 判断value有没有then函数，并且拿出then函数
+           _getThen(value) {// 此处value可以看做是一个promise对象 new Promise()
+            let type = typeof value;
+            if (value && (type === 'object' || type === 'function')) {
+              let then;
+              if (then = value.then) {
+                return then;
+              }
+            }
+            return null;
+           }
            // 接收外部传入的函数，同时调用外部传入的函数的
            _handler(func) {
             let done = false; // 就是让函数只执行一次
             func((value)=> { // resolve
                 if(done) return;
                 done = true;
+                // 判断value有没有then函数，因为resolve函数的参数可能也是一个promise对象，如：
+                /*
+                * const p2 = new MyPromise(resolve=> {
+                *   resolve('---内部promise')
+                * });
+                *
+                * const p1 = new MyPromise(resolve=> {
+                *   resolve(p2); // 此时 resolve中的参数就不是普通的类型了，而是一个promise对象了
+                * })
+                *
+                * */
+                let then = this._getThen(value); // 此处的value就是promise实例
+                if (then) {
+                  // 拿到对象的then如何知道promise完成了？只需要在then函数上注册成功和失败函数就行了，在promise完成之后就会执行成功或者失败函数
+                  return this._handler(then.bind(value));
+                }
+
                 this._resolve(value);
             },
             (error)=> { // reject
                 if(done) return;
                 done = true;
+                let then = this._getThen(error);
+                if (then) {
+                  return this._handler(then.bind(error));
+                }
                 this._reject(error);
             }
             );
@@ -93,10 +126,25 @@
                 rejectFun && rejectFun(this._error);
                }
            }
-
-           
            then(resolveFun, rejectFun) {
                this._done(resolveFun, rejectFun);
+               return new MyPromise((resolve, reject)=> {
+                 debugger;
+                 return this._done(
+                   (value)=> { // 收集成功的执行函数 resolve
+                      if (typeof resolveFun !== 'function') {
+                        return resolve(value);
+                      }
+                      resolve(resolveFun(value));
+                   },
+                   (error)=> { // 收集失败的执行函数 reject
+                     if (typeof rejectFun !== 'function') {
+                       return reject(error);
+                     }
+                     reject(rejectFun(error));
+                   }
+                   )
+               })
            }
        }
        return MyPromise;
@@ -106,36 +154,63 @@
 
 
 
+    /*const p2 = new MyPromise(resolve=> {
+      resolve('----p2完成---------');
+    });
 
+    p2.then(resolve=> {
+      console.log('----我是p2的then----');
+    })
 
 
     const p = new MyPromise((resolve)=> {
-        // setTimeout(()=> {
-            console.log(1);
-            resolve('测试resolve');
-        // }, 3000);
+          resolve(p2);
     });
-
     p.then((data)=> {
-        console.log(2);
         console.log('第一个then成功', data);
     }, (error)=> {
         console.log('第一个then的失败', error);
+    });*/
+
+    const p = new MyPromise(resolve=>{
+      resolve('data');
     });
-    console.log(3);
+    p.then(data=> {
+      return new MyPromise(function(resolve, reject) {
+        resolve('------2-3333-----');
+      })
+    }).then(data=> {
+      console.log('222', data);
+    })
+
+
+  /*const p1 = new Promise(function(resolve) {
+    resolve('test');
+  });
+
+  p1.then(function(data) {
+    console.log(data);
+   /!* return new Promise(function(resolve) {
+      resolve('---哈哈哈哈哈哈哈哈或或----');
+    })*!/
+  }).then(function(data) {
+    console.log(data);
+  })*/
 
 
 
-    const p1 = new Promise((resolve)=> {
+    /*const p1 = new Promise((resolve)=> {
         console.log(1111);
         resolve();
     })
 
     p1.then(()=> {
-        console.log(22222);
+        new MyPromise(resolve=> {
+          resolve('test');
+        })
     })
     
-    console.log(3333);
+    console.log(3333);*/
 
 
 

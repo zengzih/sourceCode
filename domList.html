@@ -33,6 +33,67 @@
   console.log(arr);
 
 
+  var ajax2 = function() {
+    return new Promise((resolve, reject) => {
+      // $.ajax()
+      setTimeout(() => {
+        alert(300);
+        resolve();
+      }, 500);
+    })
+  }
+
+  var ajax3 = function () {
+      return new Promise((resolve, reject) => {
+        // $.ajax()
+        setTimeout(() => {
+          alert(500);
+          resolve();
+        }, 300);
+      })
+    }
+
+  var ajax1 = function () {
+    return new Promise(function (resolve, reject) {
+      // $.ajax()
+      setTimeout(() => {
+        alert(800);
+        resolve();
+      }, 800);
+    })
+  }
+  ajax1().then(()=> {
+    return ajax2()
+  }).then(()=> {
+    return ajax3()
+  });
+
+    entityStr: { "objId": "student", "subObjId": "", "id": "1ae313ab2ac1e2444828ffc26858ee2d686e", "code": "sdfdsf", "name": "sfsd", "dataType": "", "mappingField": "", "appId": "sdfsdf", "orgId": "sdfsdf", "parentId": "TS_CUSTODIAN_ORG", "description": "", "mappingTable": "sdf", "positionX": 973, "positionY": 4, "panelExpand": true, "operationRevert": true, "operationSave": true }
+    createTable: [{ "length": "1", "code": "DFGGFD", "name": "DGDFG", "mappingField": "DGFD", "systemFieldType": "CREATE_OPERATOR", "dataType": "STRING", "precision": "", "dataFormat": "SDF", "defaultValue": "SDFSD", "type": "REF", "refAttributeId": "4028a5816482db4b016482e442a20006", "formEdit": true, "hidden": true, "controlType": "NUMBER", "dataSource": "PARAMETER", "expression": "SFSFS", "queryField": true, "operator": "LTE", "id": "fdf475622e5d9241db2853a2c079e634780c", "validationRules": [{ "id": "e732f5062b13424ce5290e027f498e8c95a0", "code": "DFGGFD", "name": "DGDFG", "type": "NOTNULL", "expression": "1", "order": 0 }], "nullAble": true, "primaryKey": false }]
+    updateTable: []
+    delTable: []
+
+    // 失败 null：
+      entityStr: { "objId": "student", "subObjId": "", "id": "82a139b1375b73436038259301a0c22d88eb", "code": "SDFDSFDS", "name": "SDFSDF", "mappingField": "", "appId": "FSDFDS", "orgId": "FSDFDSF", "parentId": "TS_CUSTODIAN_ORG", "description": "", "mappingTable": "SDFSD", "positionX": 1010, "positionY": 58, "panelExpand": true, "operationRevert": true, "operationSave": true }
+        createTable: [{ "length": "1", "code": "SDF", "name": "SDFSDF", "mappingField": "SDFSDF", "systemFieldType": "CREATE_DATE", "dataType": "DOUBLE", "precision": "1", "dataFormat": "1", "defaultValue": "1", "primaryKey": true, "nullAble": true, "type": "SELF", "refAttributeId": "4028a5816482db4b016482e442a10004", "operator": "EXCLUDE", "dataSource": "DATA_DICTIONARY", "controlType": "TEXT" }]
+        updateTable: []
+        delTable: []
+
+
+   // 失败： 数据编码
+      entityStr: { "objId": "student", "subObjId": "", "id": "66f30bfb76ee674814790cd72231a6aeab62", "code": "", "name": "", "mappingField": "", "appId": "", "orgId": "", "parentId": "", "description": "", "mappingTable": "", "positionX": 906, "positionY": 100, "panelExpand": true, "operationRevert": true, "operationSave": true }
+      createTable: [{ "id": "ccc01fd2c0887c4b34c917fc86964a5ab959", "code": "SDFSD", "name": "SDF", "mappingField": "SDF", "systemFieldType": "CREATE_OPERATOR", "dataType": "INTEGER", "length": "1", "precision": "", "dataFormat": "SDF", "defaultValue": "SDF", "primaryKey": false, "nullAble": true, "type": "REF", "refAttributeId": "848a33620813b0499f080cd0d6f12d0cd038", "hidden": "", "formEdit": "", "controlType": "RADIO", "dataSource": "PARAMETER", "expression": "SFDSF", "queryField": false, "operator": "LTE", "validationRules": [] }]
+      updateTable: []
+      delTable: []    
+      
+      
+   // 成功
+   entityStr: { "objId": "student", "subObjId": "", "id": "d55967ce402f14467f481664b5e1850a5296", "code": "SDFSADF", "name": "SFSADF", "mappingField": "", "appId": "FSFDDSAF", "orgId": "SDFSDF", "parentId": "student", "description": "SDFSF", "mappingTable": "ASDFSD", "positionX": 632, "positionY": 58, "panelExpand": true, "operationRevert": true, "operationSave": true }
+    createTable: [{ "id": "81bda46850d5a54fc25bcf8510b05647849b", "code": "SDFSDFSD", "name": "SDFSDFS", "mappingField": "SFSDF", "systemFieldType": "CREATE_OPERATOR", "dataType": "STRING", "length": "1", "precision": "", "dataFormat": "1", "defaultValue": "2", "primaryKey": false, "nullAble": true, "type": "REF", "refAttributeId": "48c8e304319dd34a0d398c53b9afd1664bef", "hidden": "", "formEdit": "", "controlType": "TEXTAREA", "dataSource": "DATA_DICTIONARY", "expression": "1", "queryField": true, "operator": "INCLUDE", "validationRules": [] }]
+    updateTable: []
+    delTable: []   
+
+
 
 </script>
 </html>
