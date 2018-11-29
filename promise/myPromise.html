@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    (function (factory, gobal) {
+
+    })(function () {
+        const status = {
+            pending: 'PENDING',
+            fufilled: 'FUFILLED',
+            reject: 'REJECT'
+        };
+        class MyPromise {
+            constructor(func) {
+                this.status = status.pending;
+                this.value = null;
+                this._handler(func);
+            }
+            _handler(func) {
+                let done = false;
+                func(
+                    (value) => {
+                        if(done) return;
+                        done = true;
+                        this._resolve(value);
+                    },
+                    (error) => {
+                        if(done) return;
+                        done = true;
+                        this._reject(error);
+                    }
+                )
+            }
+
+            _resolve(value) {
+                this.status = status.fufilled;
+                this.value = value;
+            }
+            
+            _reject(error) {
+                this.status = status.reject;
+                this.value = error;
+            }
+            
+            then(onFufilled, onRejected) {
+                
+            }
+            
+        }
+    }, this);
+</script>
+
+</html>

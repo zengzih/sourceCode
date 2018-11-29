@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@1.4/lib/theme-default/index.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui@1.4/lib/index.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{ mode }}
+    <input type="text" v-model="mode">
+  </div>
+</body>
+<script>
+  const MyVue = (function(factory, global) {
+    return factory.call(global);
+  })(function(){
+    function nodeToFragMent(el) {
+      let child;
+      let frag = document.createDocumentFragment();
+      while(child = el.firstChild) {
+        compile.call(this, child);
+        frag.appendChild(child);
+      }
+      return frag;
+    }
+
+    function compile(node) {
+      // 解析模板
+      let type;
+      let modelName;
+      console.dir(node);
+      if (node.nodeType === 1) {
+        const {attributes: attrs } = node;
+        [].forEach.call([].slice.call(attrs), (elt)=> {
+          if (elt.nodeName == 'v-model') {
+            modelName = elt.nodeValue;
+            node.value = this[modelName];
+            node.addEventListener('input', (e)=> {
+              this[modelName] = e.target.value;
+            });
+            node.removeAttribute('v-model');
+          }
+        });
+        type = 'input';
+      }
+      if (node.nodeType == 3) {
+        const reg = /\{\{(.*)\}\}/;
+        if (reg.test(node.nodeValue)) {
+          modelName = RegExp.$1.trim();
+          node.nodeValue = this[modelName];
+        }
+        type = 'text';
+      }
+      new Watcher(this, node, type, modelName); // 添加观察者
+    }
+
+    function Dep() {
+      this.subs = [];
+    }
+    Dep.prototype = {
+      addSub(target) {
+        this.subs.push(target);
+      },
+      notify() {
+        this.subs.forEach(sub=> {
+          sub.update();
+        });
+      }
+    }
+
+    function Watcher(vm, node, nodeType, modelName) {
+      Dep.target = this; // 将观察者和订阅者联系起来
+      this.vm = vm;
+      this.node = node;
+      this.nodeType = nodeType;
+      this.modelName = modelName;
+      this.update();
+    }
+    Watcher.prototype = {
+      update() {
+        this.get();
+        if (this.nodeType === 'input') {
+          this[this.modelName] = this.value;
+        }
+        if (this.nodeType === 'text') {
+          this.node.nodeValue = this.value;
+        }
+      },
+      get() {
+        this.value = this.vm[this.modelName];
+      }
+    }
+
+    function observer(data) {
+      Object.keys(data).forEach(key=> {
+        defineReactive.call(this, key, data[key]);
+      })
+    }
+
+    function defineReactive(key, val) {
+      let dep = new Dep();
+      Object.defineProperty(this, key, {
+        get() {
+          if (Dep.target) {
+            dep.addSub(Dep.target);
+          }
+          return val
+        },
+        set(newVal) {
+          if (newVal !== val) {
+            val = newVal;
+            dep.notify();
+          }
+        }
+      })
+    }
+
+    const MyVue = function(opt) {
+      if (!opt.el) return;
+      this.data = opt.data;
+      const _el = opt.el;
+      observer.call(this, this.data);
+      const frag = nodeToFragMent.call(this, document.querySelector(_el));
+      document.querySelector(_el).appendChild(frag);
+    };
+    return MyVue;
+  }, this);
+
+  new MyVue({
+    el: '#app',
+    data: {
+      mode: 'Test'
+    }
+  });
+</script>
+</html>
