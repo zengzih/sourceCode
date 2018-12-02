@@ -12,23 +12,21 @@
 <script>
     function MyPromise(fn) { // resolve reject
         let self = this;
-        let result = [];
         let value = null;
         // 如果这个对象没有异步操作的函数，那么resolve就会先于then方法执行，也就是说_resolves是一个空数组
         this._resolves = []; // 有多个建议使用数组或对象存储
         this._rejects = [];
         this._status = 'PENDING'; // 定义初始化状态
-        function isFunction(fn) {
-            return fn instanceof Function;
+        function isFunction(func) {
+            return func instanceof Function;
         }
         this.then = function(cb, onRejected) { //  cb: callback
-        debugger;
             return new MyPromise(function(resolve, reject) {
-                debugger;
-                function handle(value) { // 对上一个promise的then回调进行处理，并调用resolve，保证不会被下一个resolve抢先调用
-                    let ret = isFunction(cb) && cb(value) || value;
+                function handle() { // 对上一个promise的then回调进行处理，并调用resolve，保证不会被下一个resolve抢先调用
+                  let ret = isFunction(cb) && cb(value) || value;
+                  debugger;
                     // 这里是为了保持链式调用得以维持
-                    if (ret && typeof ret['then'] == 'fucntion') {
+                    if (ret && typeof ret['then'] == 'function') {
                         ret.then(function(value) {
                             resolve(value);
                         })
@@ -42,7 +40,7 @@
                 }
                 if (self._status == 'PENDING') {
                 self._resolves.push(cb); // 将回调函数保存到自身的对象中，保存进来之后什么时候回调就由我们自己控制了
-                self._rejects.push(errBack);
+                self._rejects.push(onRejected);
                 // callback = cb; // 表示拿到了callback,如果没有执行then方法就没有
                 } else if(self._status == 'FULLFILLIED'){
                     handle(value);
@@ -75,14 +73,19 @@
     }
     function Test() {
         return new MyPromise(function(resolve, reject) {
-            reject('失败');
+          resolve('Test');
             // setTimeout(()=> {
                  //resolve('一秒后触发');
             // }, 5000);
         })
     }
     Test().then(function(value) {
-        console.log(value);
-    });
+      console.log(value);
+      return new MyPromise(function(resolve) {
+        resolve('------第二个promise-----');
+      })
+    }).then(function(data) {
+      console.log(data);
+    }, function() {});
 </script>
 </html>

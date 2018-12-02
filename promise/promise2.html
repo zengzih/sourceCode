@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  const status = {
+    pending: '1',
+    fulfilled: '2',
+    reject: '3'
+  };
+  class MyPromise {
+    constructor(func) {
+      this.value = null;
+      this.resolveResult = [];
+      this.rejectResult = [];
+      this._status = status.pending;
+      this._handler(func);
+    }
+    then(resolveFunc, rejectFunc) {
+      const _this = this;
+      return new MyPromise(function(resolve, reject) {
+        return _this._done(
+          function(value) {
+            if (typeof resolveFunc !== 'function') {
+              return resolve(value); // 当resolveFunc不是一个函数时，就跳过那个then,直接执行下一个then方法
+            }
+            resolve(resolveFunc(value)); // 下一个then中的函数的值应该是上一个then中的函数的返回值，也就是resolveFunc，执行resolve函数，执行then方法，并将上一个then中的函数的返回值给下一个then。
+          },
+          function(erorr) {
+
+          }
+          )
+      })
+      this._done(resolveFunc, rejectFunc);
+    }
+    _done(resolveFunc, rejectFunc) {
+      resolveFunc = typeof resolveFunc == 'function' ? resolveFunc : null;
+      rejectFunc = typeof rejectFunc == 'function' ? rejectFunc : null;
+      if (this._status === status.pending) {
+        this.resolveResult.push(resolveFunc);
+        this.rejectResult.push(rejectFunc);
+      } else if (this._status == status.fulfilled) {
+        resolveFunc(this.value);
+      } else if (this._status == status.reject) {
+        rejectFunc(this.value);
+      }6
+    }
+    _getThen(prom) {
+      let type = typeof prom;
+      if (prom && (type === 'object' || type === 'function')) {
+        let then;
+        if (then = prom.then) {
+          return then;
+        }
+      }
+      return null;
+    }
+    _handler(func) {
+      const _this = this;
+      func(
+        function(resolveVal) { // 这里的resolve的值可能是一个普通值，也有可能是一个thenabel对象，
+          // 如果是thenabel，那么要等thenable中的resolve执行完毕才能再执行当前这个this._resolve函数
+           if (_this._status === status.pending) {
+             let then = _this._getThen(resolveVal);
+             if (then) {
+                return _this._handler(then.bind(resolveVal)); // then.bind(value)： 上一个resolve函数中的返回值。可能是一个promise函数或者对象，所以也需要调用_handler方法
+             }
+             _this._resolve(resolveVal);
+           }
+        },
+        function(rejectVal) {
+          if (_this._status === status.pending) {
+            let then = this._getThen(rejectVal);
+            if (then) {
+              this._handler(then.bind(rejectVal));
+            }
+            _this._reject(rejectVal);
+          }
+        }
+      )
+    }
+    _resolve(value) {
+      this.value = value;
+      this._status = status.fulfilled;
+      setTimeout(()=> {
+        this.resolveResult.forEach(function(callback) {
+          callback();
+        })
+      })
+    }
+    _reject(error) {
+      this.value = error;
+      this._status = status.reject;
+      setTimeout(()=> {
+        this.rejectResult.forEach(function(callback) {
+          callback();
+        })
+      })
+    }
+  };
+
+  const p = new MyPromise(function(resolve, reject) {
+    resolve('测试');
+    resolve('测试2222');
+  });
+  p.then(function (data) {
+    return new MyPromise(function(resolve) {
+      // resolve('测试链式调用');
+    })
+  }).then(function(data) {
+    console.log('----第二个返回值-----', data);
+  })
+</script>
+</html>

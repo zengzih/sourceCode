@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+</body>
+<script>
+  const MyPromise = (function(factory, gobal) {
+    return factory.call(gobal);
+  })(function() {
+    const status = {
+      pending: 'PENDING',
+      fullfield: 'FULLFIELD',
+      reject: 'REJECT'
+    };
+    class MyPromise {
+      constructor(func) {
+        this._status = status.pending;
+        this.resolveResult = [];
+        this.rejectResult = [];
+        this.value = null;
+        this.error = null;
+        this._handler(func);
+      }
+      _getThen(value) {
+        let type = typeof value;
+        if (value && (type === 'object' || type === 'function')) {
+          let then;
+          if (then = value.then) {
+            return then;
+          }
+        }
+        return null;
+      }
+      _handler(func) {
+        let done = false;
+        func(
+          (resolve)=> {
+            if(done) return;
+          this.value = resolve;
+          this._status = status.fullfield;
+          done = true;
+          let then = this._getThen(resolve);
+          if (then) {
+            this._handler(then.bind(resolve));
+          }
+          this._resolve(resolve);
+        },
+          (reject)=> {
+            if (done) return;
+            this.error = reject;
+            this._reject(reject);
+            done = true;
+          }
+        )
+      }
+
+      _resolve(value) {
+        setTimeout(()=> {
+          this.resolveResult.forEach(callback=> {
+             callback(value);
+          })
+        })
+      }
+
+      _reject(error) {
+        setTimeout(()=> {
+          this.rejectResult.forEach(callback=> {
+            callback(error);
+          })
+        })
+      }
+
+      _done(resolveFunc, rejectFunc) {
+        resolveFunc = typeof resolveFunc === 'function' ? resolveFunc : null;
+        rejectFunc = typeof rejectFunc === 'function' ? rejectFunc : null;
+        if (this._status === status.pending) {
+          resolveFunc && this.resolveResult.push(resolveFunc);
+          rejectFunc && this.rejectResult.push(rejectFunc);
+        } else if (this._status === status.fullfield) {
+          resolveFunc(this.value);
+        } else if (this._status === status.reject) {
+          rejectFunc(this.error);
+        }
+      }
+
+      then(resolveFunc, rejectFunc) {
+        return new MyPromise((resolve, reject) => {
+            return this._done(
+              (value)=>{
+                if (typeof resolve !== 'function')  {
+                  return resolve(value);
+                }
+                resolve(resolveFunc(value));
+              },
+              (error)=> {
+                if (typeof reject !== 'function') {
+                  return reject(error)
+                }
+                reject(rejectFunc(error));
+              }
+              )
+        })
+      }
+    }
+    return MyPromise;
+  }, this);
+
+  const p = new MyPromise(function(resolve, reject) {
+    resolve('----测试-----');
+  });
+  p.then(function(data) {
+    console.log('---data----', data);
+    return new MyPromise(function(resolve) {
+      resolve('第二个promise');
+    });
+  }).then(function(data) {
+    console.log(data);
+  })
+
+
+</script>
+</html>

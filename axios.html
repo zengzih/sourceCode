@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    const p = new Promise(function(resolve, reject) {
+      reject('---data---');
+    });
+    p.then(function(data) {
+      console.log('--data---', data)
+    }, function(error) {
+      console.log('---error---', error);
+    }).catch(function(data) {
+      console.log('--catch---', data);
+    })
+</script>
+</html>
