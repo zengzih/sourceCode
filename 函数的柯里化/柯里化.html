@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  (function () {
+    function curry(fn, args) {
+      var length = fn.length;
+      args = args || [];
+      return function () {
+        var _args = args.slice(0), arg, i;
+        for (i = 0; i < arguments.length; i++) {
+          arg = arguments[i];
+          _args.push(arg);
+        }
+        if (_args.length < length) {
+          return curry.call(this, fn, _args);
+        } else {
+          return fn.apply(this, _args);
+        }
+      }
+    }
+
+    function add(a, b, c) {
+      return a + b + c;
+    }
+
+    const addCurry = curry(add);
+
+    const curryAdd5 = curry(add)(5);
+
+    /*console.log(addCurry(5)(10)(15));
+    console.log(addCurry(5)(10)(15));
+    console.log(addCurry(5)(10)(15));
+    console.log(curryAdd5(10, 15));*/
+  })();
+
+  (function() {
+    const add = function() {
+      const _args = [].slice.call(arguments);
+      const adder = function() {
+        const _adder = function() {
+            [].push.apply(_args, arguments);
+            return _adder;
+        };
+        _adder.toString = function() {
+          return _args.reduce(function(a, b) {
+            return a + b;
+          });
+        }
+        return _adder;
+      }
+      return adder.apply(null, _args);
+    };
+    console.log(add(10)(20)(30));
+
+
+
+    const sub = function() {
+      const args = [].slice.call(arguments);
+      return function() {
+        if (arguments.length == 0) {
+          return args.reduce(function(a, b) {
+            return a + b;
+          });
+        } else {
+          [].push.apply(args, arguments);
+          return arguments.callee;
+        }
+      }
+    }
+    var a = sub(10, 2, 40)(2)(30);
+    console.log(a());
+
+
+  })()
+</script>
+</html>
